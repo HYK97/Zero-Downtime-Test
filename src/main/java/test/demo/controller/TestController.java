@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
+    private static int serverid= (int) ((Math.random()*3)+1);
     @GetMapping("/serverInfo")
     public String info() {
-        return "server1/version/1";
+        return "server1/version/1"+serverid;
     }
 }
