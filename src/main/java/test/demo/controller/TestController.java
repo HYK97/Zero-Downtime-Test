@@ -18,6 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping("/serverInfo")
     public String info() {
-        return "server1";
+        return "server1/version";
     }
 }
