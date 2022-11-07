@@ -1,7 +1,11 @@
 package test.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
 
 /**
  * packageName :  test.demo.controller
@@ -16,9 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
-    private static int serverid= (int) ((Math.random()*3)+1);
-    @GetMapping("/serverInfo")
-    public String info() {
-        return "server1/version/1"+serverid;
+
+    @Autowired
+    private Environment env;
+
+
+    @GetMapping("/profile")
+    public String getProfile () {
+        return Arrays.stream(env.getActiveProfiles())
+                .findFirst()
+                .orElse("")+" version 1";
     }
 }
